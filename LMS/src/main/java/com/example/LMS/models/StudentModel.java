@@ -14,8 +14,8 @@ public class StudentModel extends User {
         super(id, name, password, role, email);
     }
 
-    public StudentModel(String name, String role, String password, String email) {
-        super(name, role, password, email);
+    public StudentModel(String name, String password, String role,String email) {
+        super(name, password, role, email);
     }
 
     public StudentModel(Integer id, String email, String name) {
