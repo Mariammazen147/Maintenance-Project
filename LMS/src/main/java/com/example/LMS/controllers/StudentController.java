@@ -20,11 +20,14 @@ import java.util.Map;
 public class StudentController
 {
     final StudentService studentService;
+    @Autowired
     private CourseService courseService;
+    @Autowired
     private AttendanceService attendanceService;
+    @Autowired
     private NotificationService notificationService;
+    @Autowired
     UserRepository userRepository;
-
 
 
 
