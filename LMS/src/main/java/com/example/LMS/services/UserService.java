@@ -55,8 +55,10 @@ public class UserService {
         }
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        if(Objects.equals(user.getRole(), "ROLE_STUDENT")){
-            StudentModel student = new StudentModel(user.getName(), user.getPassword() ,user.getRole(),user.getEmail());
+
+        if(Objects.equals(user.getRole(), "STUDENT")){
+            StudentModel student = new StudentModel(user.getName(),  user.getRole(), user.getPassword(),user.getEmail());
+
             Profile profile = new Profile(student);
             studentRepository.save(student);
             profileRepository.save(profile);

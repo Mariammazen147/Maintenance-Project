@@ -74,11 +74,14 @@ public class User implements UserDetails {
     }
 
 
-@Override
+
+
+  @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority("ROLE_" + role.toUpperCase()));
     }
-    
+
+
     @Override
     public String getUsername() {
         return email;
