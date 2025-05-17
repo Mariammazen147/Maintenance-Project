@@ -87,12 +87,12 @@ public class StudentController
         List<CourseDTO> courses = courseService.displayCourses();
         return ResponseEntity.ok(courses);
     }
-    @PreAuthorize("hasRole('ROLE_STUDENT')")
+   @PreAuthorize("hasRole('STUDENT')")
     @PostMapping("/attend-lesson")
     public ResponseEntity<String> attendLesson(@RequestParam int studentId, @RequestParam Long lessonId, @RequestParam String OTP) {
         return ResponseEntity.ok(attendanceService.attendLesson(studentId, lessonId, OTP));
     }
-    @PreAuthorize("hasRole('ROLE_STUDENT')")
+    @PreAuthorize("hasRole('STUDENT')")
     @PostMapping("/sendByEmail")
     public String sendNotificationByEmail(@RequestBody Map<String, Object> payload) {
         // Extract values from payload
@@ -122,7 +122,7 @@ public class StudentController
         return "Notification sent successfully!";
     }
 
-    @PreAuthorize("hasRole('ROLE_STUDENT')")
+     @PreAuthorize("hasRole('STUDENT')")
     @GetMapping("/{courseId}/materials")
     public ResponseEntity<List<String>> getCourseMaterials(@PathVariable Long courseId) {
         List<String> mediaFiles = courseService.getMediaFilesByCourseId(courseId);
