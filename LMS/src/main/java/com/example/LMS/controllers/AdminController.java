@@ -31,13 +31,13 @@ public class AdminController {
 
     UserRepository userRepository;
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/users")
     public ResponseEntity<Object> getAllUsers(Authentication authentication) {
 
         return userService.getAllUsers();
     }
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/sendByEmail")
     public String sendNotificationByEmail(@RequestBody Map<String, Object> payload) {
         // Extract values from payload
@@ -66,7 +66,7 @@ public class AdminController {
 
         return "Notification sent successfully!";
     }
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/{courseId}/students")
     public ResponseEntity<List<StudentModel>> getEnrolledStudents(@PathVariable Long courseId) {
         List<StudentModel> students = courseService.getStudentsByCourseId(courseId);
