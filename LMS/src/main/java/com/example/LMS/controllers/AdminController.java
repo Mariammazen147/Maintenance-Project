@@ -7,7 +7,6 @@ import com.example.LMS.repositories.UserRepository;
 import com.example.LMS.services.CourseService;
 import com.example.LMS.services.NotificationService;
 import com.example.LMS.services.UserService;
-import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
