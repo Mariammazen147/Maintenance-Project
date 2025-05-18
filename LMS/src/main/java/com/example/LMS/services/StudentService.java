@@ -37,7 +37,6 @@ public class StudentService {
     }
 
     public StudentModel enrollStudent( int studentId, long csid) {
-        // اوزين نجيب ال طالب العنده ال
         StudentModel s = studentRepository.findById(studentId).get();
         if(s == null) {
             return null;
@@ -55,4 +54,9 @@ public class StudentService {
         courseRepository.save(course);
         return s;
     }
+
+    public void assignStudentsToCourse(Long courseId, List<Integer> studentIds) {
+        for (Integer studentId : studentIds) {
+            enrollStudent(studentId, courseId);
+        }
 }
