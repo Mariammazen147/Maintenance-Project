@@ -14,6 +14,7 @@ public class QuizModel {
 
     private String quizTitle;
     private double grade;
+    private String feedback;
     // Many-to-One relationship with CourseModel (Each quiz belongs to one course)
     @ManyToOne
     @JoinColumn(name = "course_id", nullable = false) // Foreign key in Quiz table
@@ -34,6 +35,14 @@ public class QuizModel {
 
     public Long getId() {
         return id;
+    }
+
+    public String getFeedback() {
+        return feedback;
+    }
+
+    public void setFeedback(String feedback) {
+        this.feedback = feedback;
     }
 
     public void setId(Long id) {
