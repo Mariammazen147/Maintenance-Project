@@ -135,4 +135,10 @@ public class StudentController
         return ResponseEntity.ok(mediaFiles); // Return the list of media files for the course
     }
 
+    @PostMapping("/assignStudents")
+    public ResponseEntity<String> assignStudentsToCourse(@RequestBody StudentAssignmentDTO request) {
+        studentService.assignStudentsToCourse(request.getCourseId(), request.getStudentIds());
+        return ResponseEntity.ok("Students assigned to course successfully.");
+    }
+
 }
