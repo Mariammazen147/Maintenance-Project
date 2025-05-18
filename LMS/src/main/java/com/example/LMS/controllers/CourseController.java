@@ -24,6 +24,7 @@ public class CourseController {
     private static final String UPLOAD_DIRECTORY = "C:/uploads/";
 
     @PostMapping("/createCourse")
+    @PreAuthorize("hasRole('INSTRUCTOR')")
     public ResponseEntity<String> createCourse(@RequestBody CourseModel course) {
         if (course.getListLessons() == null) {
             course.setListLessons(new ArrayList<>());
@@ -37,6 +38,7 @@ public class CourseController {
     }
 
     @PostMapping("/{courseId}/upload-media")
+    @PreAuthorize("hasRole('INSTRUCTOR')")
     public ResponseEntity<String> uploadMedia(@PathVariable String courseId, @RequestParam("file") MultipartFile file) {
         try {
 
@@ -67,23 +69,28 @@ public class CourseController {
         return ResponseEntity.ok(courses);
     }
     @DeleteMapping("/{courseId}/deleteStudent/{studentId}")
+    @PreAuthorize("hasRole('INSTRUCTOR')")
     public ResponseEntity<String> deleteEnrollStudent(@PathVariable Long courseId, @PathVariable Integer studentId) {
         courseService.deleteStudentFromCourse(courseId, studentId);
         return ResponseEntity.ok("Student deleted successfully");
     }
 
     @DeleteMapping("/{courseId}/deleteAllStudents")
+    @PreAuthorize("hasRole('INSTRUCTOR')")
     public ResponseEntity<String> deleteAllStudents(@PathVariable Long courseId) {
         courseService.deleteAllStudentsFromCourse(courseId);
         return ResponseEntity.ok("All students deleted successfully");
     }
+    
     @PutMapping("/{courseId}/update")
+    @PreAuthorize("hasRole('INSTRUCTOR')")
     public ResponseEntity<String> updateCourse(@PathVariable Long courseId, @RequestBody CourseModel updatedCourse) {
         courseService.updateCourseDetails(courseId, updatedCourse);
         return ResponseEntity.ok("Course updated successfully");
     }
 
     @GetMapping("/{courseId}/students")
+    @PreAuthorize("hasRole('INSTRUCTOR')")
     public ResponseEntity<List<StudentModel>> getEnrolledStudents(@PathVariable Long courseId) {
         List<StudentModel> students = courseService.getStudentsByCourseId(courseId);
         if (students.isEmpty()) {
@@ -91,6 +98,7 @@ public class CourseController {
         }
         return ResponseEntity.ok(students); // Return the list of students enrolled in the course
     }
+    
     @GetMapping("/{courseId}/materials")
     public ResponseEntity<List<String>> getCourseMaterials(@PathVariable Long courseId) {
         List<String> mediaFiles = courseService.getMediaFilesByCourseId(courseId);
