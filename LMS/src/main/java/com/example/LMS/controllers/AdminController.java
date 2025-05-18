@@ -7,7 +7,7 @@ import com.example.LMS.repositories.UserRepository;
 import com.example.LMS.services.CourseService;
 import com.example.LMS.services.NotificationService;
 import com.example.LMS.services.UserService;
-import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
+import org.springframework.security.core.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -35,12 +35,13 @@ public class AdminController {
 
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
+
     @GetMapping("/users")
     public ResponseEntity<Object> getAllUsers(Authentication authentication) {
 
         return userService.getAllUsers();
     }
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/sendByEmail")
     public String sendNotificationByEmail(@RequestBody Map<String, Object> payload) {
         // Extract values from payload
@@ -69,7 +70,7 @@ public class AdminController {
 
         return "Notification sent successfully!";
     }
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/{courseId}/students")
     public ResponseEntity<List<StudentModel>> getEnrolledStudents(@PathVariable Long courseId) {
         List<StudentModel> students = courseService.getStudentsByCourseId(courseId);

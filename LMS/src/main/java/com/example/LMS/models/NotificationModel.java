@@ -36,7 +36,7 @@ public class NotificationModel {
     public User getStudent() {
         return user;
     }
-    public void setStudent(StudentModel student) {
+    public void setStudent(StudentModel user) {
         this.user = user;
     }
     public String getType() {
