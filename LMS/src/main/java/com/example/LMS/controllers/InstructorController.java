@@ -23,14 +23,22 @@ import java.util.*;
 public class InstructorController
 
 {
-    @Autowired
+   @Autowired
     private CourseService courseService;
+    @Autowired
     private LessonService lessonService;
+    @Autowired
     private QuizService quizService;
+    @Autowired
     private AssignmentService assignmentService;
+    @Autowired
     private AttendanceService attendanceService;
+    @Autowired
     private NotificationService notificationService;
+    @Autowired
     private TrackPerformanceService trackPerformanceService;
+    @Autowired
+    UserRepository userRepository;
 
     UserRepository userRepository;
 

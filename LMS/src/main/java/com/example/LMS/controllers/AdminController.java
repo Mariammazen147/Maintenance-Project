@@ -24,14 +24,18 @@ import java.util.Map;
 @RequestMapping("/admin")
 public class AdminController {
 
-    @Autowired
+   @Autowired
     private UserService userService;
+    @Autowired
     private NotificationService notificationService;
+    @Autowired
     private CourseService courseService;
-
+    @Autowired
     UserRepository userRepository;
 
-    @PreAuthorize("hasRole('ADMIN')")
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+
     @GetMapping("/users")
     public ResponseEntity<Object> getAllUsers(Authentication authentication) {
 
