@@ -125,7 +125,7 @@ public class TrackPerformanceService {
                 studentDetails.put("studentId", student.getId());
                 studentDetails.put("studentName", student.getName());
                 studentDetails.put("grade", quiz.getGrade());
-                // studentDetails.put("feedback", quiz.getfeedback());
+                studentDetails.put("feedback", quiz.getfeedback());
                 studentDetails.put("date", new Date().toString()); // Replace with actual submission date if available
 
                 List<CourseModel> courses = courseRepository.findByStudentId(Long.valueOf(student.getId())); // Ensure Long type
